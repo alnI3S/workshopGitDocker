@@ -5,9 +5,13 @@ Support pour le workshop du 14 Octobre 2025.
 Découvrez comment configurer un **environnement de développement reproductible et efficace** en combinant **Git, Docker** et **Visual Studio Code (Code)** sous Ubuntu. Cet atelier est conçu pour les **développeurs débutants et intermédiaires** souhaitant optimiser leur workflow et gagner en productivité.
 # Objectifs
 ✅ Configurer VSCode comme éditeur par défaut pour Git (diff/merge, commits).
+
 ✅ Maîtriser les commandes Git essentielles (branches, sous-modules, annulation de commits).
+
 ✅ Créer, builder et déployer des conteneurs Docker personnalisés (UID/GID, utilisateur non-root).
-✅ Utiliser les **Dev Containers** de VSCode pour un développement isolé et reproductible
+
+✅ Utiliser les **Dev Containers** de VSCode pour un développement isolé et reproductible.
+
 # Plan
 |   Section             |Durée                          |Format                         |
 |----------------|-------------------------------|-----------------------------|
