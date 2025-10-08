@@ -1,8 +1,8 @@
-# Introduction aux outils de développement : Git, Docker et VSCode
+# Introduction aux outils de développement : Git, Docker et Code
 **Points clés :**
 - **Git** : Suivi historique, collaboration décentralisée, gestion des branches, open-source.
 - **Docker** : Environnements reproductibles, isolation des projets, réseau multi-conteneurs, pas de problèmes d’installation.
-- **VSCode** : Interface intuitive, extensions variées, terminal intégré, compatible avec tous les systèmes d’exploitation.
+- **Code** : Interface intuitive, extensions variées, terminal intégré, compatible avec tous les systèmes d’exploitation.
 
 # Git – Système de contrôle de version
 **Avantages:**
@@ -16,7 +16,7 @@
 - **Focus sur le cœur du projet** : Élimine les problèmes liés à la configuration de l’environnement.
 - **Conteneur dédié par projet** : Chaque projet peut avoir ses propres dépendances et configurations isolées.
 - **Réseau multi-conteneurs: Docker compose** : Permet de faire communiquer plusieurs conteneurs entre eux, simulant un environnement de production.
-# VSCode – Éditeur de code
+# Code – Éditeur de code
 **Avantages :**
 - **Interface conviviale** : Facile à utiliser, avec une intégration fluide entre le développeur et la machine.
 - **Écosystème riche d’extensions** : Des milliers d’extensions disponibles, y compris des outils d’IA comme GitHub Copilot.
@@ -28,4 +28,4 @@ Ces trois outils sont souvent utilisés ensemble pour créer un **workflow de d�
 
 - **Git** gère le code source et les collaborations.
 - **Docker** assure que l’environnement d’exécution est cohérent et reproductible.
-- **VSCode** fournit une interface puissante pour coder, déboguer et gérer les projets.
+- **Code** fournit une interface puissante pour coder, déboguer et gérer les projets.

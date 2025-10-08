@@ -1,0 +1,154 @@
+# TP2 - Utilisation Courante de Git - Concepts Clés
+Pour ce deuxième TP, nous allons récupérer un projet opensource sur GitHub, le cloner, et travailler sur une branche pour ajouter une modification.
+
+## 📥 Récupération d’un Projet sur GitHub
+### Forker un dépôt opensource: 
+- Sur le site de GitHub, naviguez sur mon dépôt: https://github.com/alnI3S/workshopGitDocker
+- Cliquez sur le bouton "**Fork**" pour créer une copie du dépôt dans votre compte GitHub.
+
+**Note**: Pour synchroniser votre projet forké avec celui d'origine, GitHub dispose d'un bouton "**Sync fork**".
+### Cloner votre dépôt forké:
+Dans votre espace de travail neuf **autre que l'espace du TP1**, entrez cette commande pour cloner votre dépôt forké:
+```
+git clone https://github.com/<votre_nom_utilisateur>/workshopGitDocker.git
+
+cd workshopGitDocker/
+```
+Vérifiez avec `git remote -v` que vous avez bien le lien entre les dépôts local - distant.
+
+Maintenant vous avez une copie locale du dépôt forké. Votre projet local n'a aucun lien avec mon projet sur GitHub, seul votre projet forké sur GitHub a un lien vers le mien.
+
+## Workflow typique du projet:
+1) Vous souhaitez travaillez en parallèle pour tester une nouvelle fonctionnalité ou corriger des bugs. Dans ce cas, vous pouvez créer une nouvelle branche avec `git checkout -b <nom_de_la_branche>` et travailler dans cette branche.
+2) Quand votre nouvelle fonctionnalité est finalisé et que votre dépôt forké sur GitHub est à jour avec `git push`, vous souhaitez la proposer à la communauté. Dans ce cas vous faites une **Pull Request** depuis votre GitHub. Comme je suis le propriétaire du dépôt original, charge à moi d'accepter (ou non) vos modifications dans mon dépôt.
+
+
+## 🔄 Gestion des Modifications
+### Branches: 
+On peut créer une nouvelle branche avec `git branch <new_branch>` ou `git checkout -b <new_branch>`. La premère vous laisse sur votre branche actuelle (`main`) alors que la deuxième bascule automatiquement sur la nouvelle branche.
+
+Créez une nouvelle branche `dev` et basculez-y avec:
+```
+git pull                # util pour récupérer les modifications à distant
+git checkout -b dev
+```
+A ce stade votre branch `dev` a le même état que la branche (`main`) dont elle est issue.
+
+**Notes**:
+1) voir les branches locales: `git branch`,
+2) basculer sur une branche existante: `git checkout <branch_name>` ou (**Nouveau!**) `git switch <branch_name>`,
+3) supprimer une branche locale: `git branch -d <branch_name>`,
+
+### Modification de code: 
+Modifiez le fichier `doc/2a_git&code.md` par exemple en y ajoutant à la fin:
+```
+Exercice:
+Résumez les commandes de base de Git de ce TP en une liste à puces.
+```
+
+### Diff Tool:
+Voir l'état du dépôt:
+```
+git status
+```
+Il y a en général 3 sections: 
+- **Changes to be committed** (changements indexés) en <span style="color:green; font-weight:bold;">vert</span> contient les fichiers ajoutés avec `git add` mais pas encore committés,
+- **Changes not staged for commit** (Changements) en <span style="color:red; font-weight:bold;">rouge</span> contient les fichiers modifiés mais as encore ajoutés avec `git add`,
+- **Untracked files** en <span style="color:red; font-weight:bold;">rouge</span> contient les nouveaux fichier non indexés (pas encore `git add`).
+
+Nous avons configuré Code pour les outils `diff` et `merge`, vous pouvez les utiliser en cliquant sur le menu latéral gauche **Control de code source (Ctsl + Maj + G)** puis section **Changements**. Voici quelques exemples d'utilisation de `difftool` "en ligne de commande":
+- voir les changements entre la version actuelle et la version précédente du fichier `doc/2a_git&code.md` sur la branche `main`: `git difftool <other_branch> -- <file_path>`:
+    ```
+    git difftool main doc/2a_git&code.md
+    ```
+- voir tous les changements: `git difftool <branch you want to check with>`:
+    ```
+    git difftool main
+    ```
+
+    Code va vous demander de confirmer l'ouverture de chaque fichier pour visualiser les changements.
+
+### Valider les changements
+Nous avons vu les commandes `git add` et `git commit` pour valider les changements.
+
+Alternativement, vous pouvez aussi utiliser l'interface graphique de Code pour valider les changements:
+- Allez dans le menu latéral gauche **Control de code source (Ctsl + Maj + G)** puis section **Changements**:
+- Cliquez sur le bouton "**+**" de "**Changements**" pour **Mettre en attente** tous les fichiers ou cliquez seulement le bouton "**+**" du fichier que vous souhaiter **Mettre en attente**. 
+    Une nouvelle section **Changements indexés** apparaît avec les fichiers que vous avez cliqué sur le bouton "**+**". Et le bouton **Validation** devient disponible.
+    Cliquez sur **Validation** pour committer vos changements.
+    
+### Sauvegarder une branche locale sur GitHub:
+
+
+### Merge Tool: 
+Lorqu'il y a des conflits, l'outil de fusion intégré à Code s'ouvre automatiquement pour vous aider à résoudre.
+
+On va simuler un conflit en modifiant le même fichier par deux sources différentes:
+1) Allez sur votre 
+
+Résolvez les conflits avec `git merge` ou des outils graphiques intégrés.
+- **Revenir en arrière**: Utilisez `git reset` pour annuler des modifications.
+- **Suppression des fichiers non suivis**: Nettoyez les fichiers inutiles avec `git clean`.
+### Mettre à jour un dépôt local: 
+Utilisez `git pull` pour synchroniser les dernières modifications depuis le dépôt distant.
+
+## 🔄 Synchronisation avec la Branche Distante
+- **Pousser les modifications**: Utilisez `git push` pour envoyer vos changements locaux vers le dépôt distant.
+- **Mettre à jour la branche distante**: Utilisez `git pull` pour intégrer les dernières modifications depuis le dépôt distant dans votre branche locale.
+
+## 🌿 Utilisation Avancée des Branches
+- **Cloner une branche spécifique**: Récupérez uniquement une branche particulière avec `git checkout -b <nom_branche> origin/<nom_branche>`.
+- **Pousser une branche locale vers GitHub**: Partagez une nouvelle branche avec `git push -u origin <nom_branche>`.
+- **Fusionner les branches**: Intégrez les modifications d’une branche dans une autre avec `git merge`.
+- **Comparer les fichiers entre branches**: Identifiez les différences avec `git difftool <branche1>..<branche2>`.
+
+## 📦 Gestion des Sous-Modules
+- **Ajouter un sous-module**: Intégrez un autre dépôt Git avec `git submodule add`.
+- **Mettre à jour un sous-module**: Synchronisez les modifications du sous-module avec `git submodule update`.
+
+
+
+log, status, commit --amend
+
+branch, checkout, merge, delete, 
+stash
+clone
+
+fetch, mergetool
+
+
+### revenir en arrière
+#### dépôt local
+Pour annuler le commit le plus récent:
+```
+git reset HEAD~ 
+```
+#### dépôt distant GitHub
+Si vous voulez aussi annuler le dernier commit à distant:
+```
+git reset HEAD^
+git push origin +HEAD
+```
+Vous pouvez annuler plusieurs commits successifs par exemple annuler les deux derniers commits avec la commande `git reset --hard HEAD~2`.
+
+### rename/delete a file
+Quand vous renommer un fichier il apparaît en rouge avec `git status`, suivez les messages de git mour l'enlever:
+```
+git rm <file_to_delete_in_red>
+git commit -m "rename/remove file"
+```
+### synchroniser une branche
+### gestion avancée des branches
+- créer une nouvelle branche
+    - avec des modifications utilisant `git stash`
+- renommer une branche
+- basculer entre les branches
+- effacer une branche
+- envoyer une branche local vers le dépôt distant
+- cloner une branche spécifique
+- réinitialiser une branche locale sur la branche distante
+- fusionner 2 branches
+
+### sous-modules
+
+## Fork
