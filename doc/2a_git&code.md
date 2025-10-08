@@ -23,7 +23,7 @@ Sécuriser vos interactions avec les dépôts distants (GitHub, GitLab) pour pou
         - **Note**: si vous perdez votre token vous pouvez toujours regénérer un nouveau et effacer l'ancien sur le site GitHub.
 - Automatisation de l'accès token: enregistrement du token dans un fichier sur votre ordinateur afin de nep as avoir à les saisir à chaque interaction avec un dépôt distant (GitHub, GitLab, Koda).
 ```
-git config --global --ad credential.helper "store --file ~/.git-credentials"
+git config --global --add credential.helper "store --file ~/.git-credentials"
 chmode 600 ~/.git-credentials  # Restreint les permissions du fichier
 ```
 - (Option) Voir/Supprimer la configuration:
