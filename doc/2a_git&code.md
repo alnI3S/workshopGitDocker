@@ -144,7 +144,20 @@ git log
     git pull        # (option) pour récupérer les changements à distant
     git push
     ```
-### Pratique
-1) Ajouter un fichier ou modifier un fichier existant de votre dépôt: utiliser `git add` et `git commit`,
+### Pratique 1
+1) Ajoutez un fichier ou modifiez un fichier existant de votre dépôt: utiliser `git add` et `git commit`,
 
-2) Sauvegarder les changements sur GitHub: utiliser `git push`.
+2) Sauvegardez les changements sur GitHub: utilisez `git push`.
+
+### (Bonus) Pratique 2
+On va refaire la même chose mais cette fois-ci on va utiliser Code pour visualiser les changements et les sauvegarder sur GitHub.
+
+1) ajoutez/modifiez un fichier de votre dépôt. Puis allez dans le menu latéral à gauche, sélectionnez **Control de code source (Ctsl + Maj + G)** puis section **Changements**:
+    
+    1-1) Cliquez sur le bouton "**+**" de "**Changements**" pour **Mettre en attente** (équivalent à `git add`) tous les fichiers ou cliquez seulement le bouton "**+**" du fichier que vous souhaitez **Mettre en attente**. 
+    
+    1-2) Une nouvelle section **Changements indexés** apparaît avec les fichiers que vous avez cliqué sur le bouton "**+**". Et le bouton **Validation** devient disponible.
+
+    1-3) Cliquez sur **Validation** pour committer (équivalent à `git commit`) vos changements. Code va vous proposer d'entrer un message de commit, faites-le puis cliquez sur le logo "**check**" en forme de "v" pour valider le message.
+    
+    1-4) Synchronisez avec votre dépôt sur GitHub en cliquant sur "**Synchroniser les modifications**" (équivalent à `git push`).
