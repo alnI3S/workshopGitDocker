@@ -79,7 +79,7 @@ Nous avons vu dans le bonus du TP1 les commandes graphiques équivalents à `git
 - Allez dans le menu latéral gauche **Control de code source (Ctsl + Maj + G)** puis section **Changements**:
 - Cliquez sur le bouton "**+**" de "**Changements**" pour **Mettre en attente** tous les fichiers ou cliquez seulement le bouton "**+**" du fichier que vous souhaiter **Mettre en attente**. 
     - Une nouvelle section **Changements indexés** apparaît avec les fichiers que vous avez cliqué sur le bouton "**+**". Et le bouton **Validation** devient disponible.
-- Cliquez sur **Validation** pour committer vos changements. Code va vous proposer d'entrer un message de commit, faites-le puis cliquez sur le logo "**check**" en forme de "v" pour valider le message.
+- Cliquez sur **Validation** pour committer vos changements. Code va vous proposer d'entrer un message de commit, faites-le puis enregistrez et cliquez sur le logo "**check**" en forme de "v" pour valider le commit.
 
 ### Sauvegarder une branche locale sur GitHub:
 - Votre branche `dev` n'existe que localementMaintenant dans la section graphique une nouvelle étape apparaît. Envoyez votre branche locale sur votre dépôt GitHub en cliquant sur "**Publier la branche**".
