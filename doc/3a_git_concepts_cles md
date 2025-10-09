@@ -20,7 +20,7 @@ Vérifiez avec `git remote -v` que vous avez bien le lien entre les dépôts loc
 
 Maintenant vous avez une copie locale du dépôt forké. Votre projet local n'a aucun lien avec mon projet sur GitHub, seul votre projet forké sur GitHub a un lien vers le mien.
 
-## Workflow typique du projet:
+## Workflow typique d'un projet:
 1) Vous souhaitez travailler en parallèle pour tester une nouvelle fonctionnalité ou corriger des bugs. Dans ce cas, vous pouvez créer une nouvelle branche avec `git checkout -b <nom_de_la_branche>` et travailler dans cette branche.
 2) Quand votre nouvelle fonctionnalité est finalisée et que votre dépôt forké sur GitHub est à jour avec `git push`, vous souhaitez la proposer à la communauté. Dans ce cas vous faites une **Pull Request** depuis votre GitHub. Comme je suis le propriétaire du dépôt original, charge à moi d'accepter (ou non) vos modifications dans mon dépôt.
 3) Si votre **Pull Request** est acceptée, vous pouvez mettre à jour votre dépôt forké avec **Sync fork** pour récupérer les modifications sur la branche `main` 
@@ -91,10 +91,23 @@ Nous avons vu dans le bonus du TP1 les commandes graphiques équivalents à `git
         ```
 
 ### Merge Tool: 
+#### Cas simple sans conflit:
+Nous allons fusionner la branche `dev` dans la branche `main`. Il n'y a pas de conflit:
+
+```
+git checkout main       # aller sur la branche main
+git pull                # récupérer les changements (s'il y en a)
+git merge test          # fusionner branche test dans branche main (actuelle)
+```
+entrez un message dans MERGE_MSG et enregistrez.
+
+#### Cas avec conflits
 Lorqu'il y a des conflits, l'outil de fusion intégré à Code s'ouvre automatiquement pour vous aider à résoudre.
 
-On va simuler un conflit en modifiant le même fichier par deux sources différentes:
-1) Allez sur votre 
+On va simuler un conflit en modifiant le même fichier `doc/2a_git&code.md` par deux sources différentes:
+1) Allez sur votre GitHub et modifiez le fichier `doc/2a_git&code.md` en ligne.
+2) Modifiez le même fichier `doc/2a_git&code.md` localement.
+3) Faites un `git pull` pour récupérer les modifications distantes
 
 Résolvez les conflits avec `git merge` ou des outils graphiques intégrés.
 - **Revenir en arrière**: Utilisez `git reset` pour annuler des modifications.
