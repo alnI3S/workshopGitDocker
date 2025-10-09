@@ -1,5 +1,7 @@
 # TP1 - Démarrer avec Git et Code
+
 ## 1️⃣ Identification et authentificaton
+
 ### 1-1) **Configurer Git** (`git config`) : 
 Définir votre identité (nom, email) pour que vos contributions soient reconnues. Remplacez les blocs `<..>` par votre nom et email dans ces commandes:
 ```
@@ -14,6 +16,7 @@ ou visualisation uniquement les configurations utilisateur:
 ```
 git config --global --list
 ```
+
 ### 1-2) **Tokens d’authentification**: 
 Sécuriser vos interactions avec les dépôts distants (GitHub, GitLab) pour pousser (`push`) ou récupérer (`pull`) du code.
 - Sur GitHub, connectez-vous avec votre identiant et mot de passe, puis générez un token d'accès personnel, comme suit:
@@ -32,6 +35,7 @@ git config --global --get-all credential.helper
 git config --unset credential.helper
 ```
 ## 2️⃣ Gérer le travail efficacement
+
 ### 2-1) Création d'un projet en local (local repo):
 Nous abordons Git par le sens local -> distant (remote): nous mettrons notre code à disposition du public. L'autre sens (distant -> local) où l'on récupe un code disponible sur GitHub puis le modifie, sera traité dans le TP2.
 
@@ -39,6 +43,7 @@ Créez un répertoire `monAtelierGit/`pour votre projet et y créez un fichier `
 ```
 # Mes notes pour l'atelier Git, Docker et Code du 14 Octobre 2025
 ```
+
 ### 2-2) Git: Les bases
 **Cycle de vie** des fichiers dans Git: `untracked` -> `staged` -> `committed`.
 
@@ -83,9 +88,11 @@ Voir la configuration (dans le fichier `~/.gitconfig`):
 git config --global -e
 ```
 Modifiez/Ajoutez du texte dans votre fichier `README.md` et testez la commande `git difftool`.
+
 ## 3️⃣ Partager/Sauvegarder le code sur GitHub
 - **Collaboration simplifiée** : Pousser votre code sur GitHub pour le partager avec votre équipe ou la communauté.
 - **Intégration fluide** : Code facilite les commits, les pushes, et les revues de code grâce à ses extensions (comme GitLens).
+
 ### 3-1) Projet sur GitHub (remote repo):
 Vous allez héberger votre projet sur GitHub en mode `Public` ou `Private` et syncroniser votre dépôt local avec le dépôt distant.
 - Connectez-vous avec votre compte GitHub pour créer un nouveau dépôt (remote repo) comme suit:
@@ -98,6 +105,7 @@ Vous allez héberger votre projet sur GitHub en mode `Public` ou `Private` et sy
         - ***Configuration/Add .gitignore*****: *No*,
         - ***Configuration/Add license***: *MIT*.
         - copiez l'URL de votre projet pour la suite.
+
 ### 3-2) Association projet local <-> projet distant:
 - Retournez dans le terminal de Code, exécutez la commande suivante pour ajouter le dépôt distant à votre dépôt local:
     ```
@@ -127,3 +135,16 @@ git status
 ```
 git log
 ```
+
+## 4️⃣ Travail au quotidien
+1) Quand vous modifiez/ajoutez votre code, vous utilisez `git add` et `git commit` comme dans la section 2.2.
+
+2) Ensuite vous sauvegardez votre changement sur GitHub avec:
+    ```
+    git pull        # (option) pour récupérer les changements à distant
+    git push
+    ```
+### Pratique
+1) Ajouter un fichier ou modifier un fichier existant de votre dépôt: utiliser `git add` et `git commit`,
+
+2) Sauvegarder les changements sur GitHub: utiliser `git push`.
