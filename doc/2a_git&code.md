@@ -161,3 +161,7 @@ On va refaire la même chose mais cette fois-ci on va utiliser Code pour visuali
     1-3) Cliquez sur **Validation** pour committer (équivalent à `git commit`) vos changements. Code va vous proposer d'entrer un message de commit, faites-le puis cliquez sur le logo "**check**" en forme de "v" pour valider le message.
     
     1-4) Synchronisez avec votre dépôt sur GitHub en cliquant sur "**Synchroniser les modifications**" (équivalent à `git push`).
+
+# test
+
+test conflit: modifié dans dev.

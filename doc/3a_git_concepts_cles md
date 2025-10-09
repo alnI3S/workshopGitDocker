@@ -104,10 +104,11 @@ entrez un message dans MERGE_MSG et enregistrez.
 #### Cas avec conflits
 Lorqu'il y a des conflits, l'outil de fusion intégré à Code s'ouvre automatiquement pour vous aider à résoudre.
 
-On va simuler un conflit en modifiant le même fichier `doc/2a_git&code.md` par deux sources différentes:
-1) Allez sur votre GitHub et modifiez le fichier `doc/2a_git&code.md` en ligne.
-2) Modifiez le même fichier `doc/2a_git&code.md` localement.
-3) Faites un `git pull` pour récupérer les modifications distantes
+On va simuler en local un conflit en modifiant le même fichier `doc/2a_git&code.md` sur deux branches différentes:
+1) Restez sur la branche `dev` et modifiez le même fichier en entrant le texte "test conflit: modifié dans dev.". Validez le changement.
+2) Basculez vers la branche `main` et modifiez le fichier `doc/2a_git&code.md`. en ajoutant par exemple le texte "test conflit: modifié dans main.". Enregistrez.
+3) fusionnez `test` dans `main`
+
 
 Résolvez les conflits avec `git merge` ou des outils graphiques intégrés.
 - **Revenir en arrière**: Utilisez `git reset` pour annuler des modifications.
