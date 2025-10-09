@@ -74,9 +74,11 @@ Nous avons vu les commandes `git add` et `git commit` pour valider les changemen
 Alternativement, vous pouvez aussi utiliser l'interface graphique de Code pour valider les changements:
 - Allez dans le menu latéral gauche **Control de code source (Ctsl + Maj + G)** puis section **Changements**:
 - Cliquez sur le bouton "**+**" de "**Changements**" pour **Mettre en attente** tous les fichiers ou cliquez seulement le bouton "**+**" du fichier que vous souhaiter **Mettre en attente**. 
-    Une nouvelle section **Changements indexés** apparaît avec les fichiers que vous avez cliqué sur le bouton "**+**". Et le bouton **Validation** devient disponible.
-    Cliquez sur **Validation** pour committer vos changements.
-    
+    - Une nouvelle section **Changements indexés** apparaît avec les fichiers que vous avez cliqué sur le bouton "**+**". Et le bouton **Validation** devient disponible.
+- Cliquez sur **Validation** pour committer vos changements. Code va vous proposer d'entre un message de commit, faites-le puis cliquez sur le logo "**check**" en forme de "v" pour valider le message.
+- Maintenant dans la section graphique une nouvelle étape apparaît. Synchronisez avec votre dépôt su GitHub en cliquant sur "**Synchroniser les modifications**".
+
+
 ### Sauvegarder une branche locale sur GitHub:
 
 
