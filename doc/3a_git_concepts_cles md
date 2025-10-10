@@ -180,23 +180,38 @@ git commit -m "rename/remove file"
 ## 📦 Gestion des Sous-Modules
 Souvent dans les projets d'ampleur important il intègres plusieur modules tiers, ce sont des `submodule` en Git.
 ### Ajouter un sous-module
-Pour intégrer un autre dépôt Git avec `git submodule add <repository> [<path>]`:
+Si vous voulez juste utiliser un module sans le modifier, vous pouvez l'intégrer dans votre projet avec `git submodule add <repository> [<path>]`:
 
-1) ajouer un module de mesure Time Of Flight (TOF) de la puce TDC7201 de Texas Instruments dans le répertoire `submodules/TDC7201Term`:
+1) Ajouter un module de mesure Time Of Flight (TOF) de la puce TDC7201 de Texas Instruments dans le répertoire `submodules/TDC7201Term`:
 ```
 git submodule add https://github.com/looninho/TDC7201Term.git submodules/TDC7201Term
 ```
+2) Aller dans le répertoire du sous-module et vérifier la branche par défaut:
+```
+cd cd submodules/TDC7201Term/
+git status
+git remote -v
+```
+Maintenannt vous êtes dans un sous-répertoire qui se comporte comme un dépôt Git indépendant. Attention tout de même que le dépôt `origin` ne vous appartient pas donc ne rien mododifiez dedans.
 
+**Note**: Si vous voulez récupérer les dernières modifications faites par le propriétaire du dépôt `origin`, utilisez `git pull` depuis le répertoire du sous-module.
 
-### Mettre à jour un sous-module
-Synchronisez les modifications du sous-module avec `git submodule update`.
+### Modifier un sous-module
+Si vous voulez modifier le code du sous-module, il convient d'ajouter un dépôt `upstream` (un fork sur GitHub qui vous appartient) pour récupérer les mises à jour du dépôt `origin` depuis GitHub et modifier le code comme nous avons fait dans ce TP2:
+1) Sur gitHub, faire un **fork** du dépôt origine
+2) Ajouter le lien `upstream` pour le module forké avec `git remote add upstream <url_forked_submodule>`. Attention pour les `pull`/`push` il faut préciser `upstream` comme `git pull upstream [<branch_name>]`, `git push upstream [<branch_name>]` parce que rien préciser est équivalent à `origin`.
+3) Aller dans le répertoire du sous-module et vérifier:
+    ```
+    # cd path_to_submodule
+    git remote -v
+    git branch
+    ```
+4) Remplacer l'url ainsi que la branche du sous-module vers le vôtre dans le fichier `.gitmodules`
+5) Vous pouvez créer une nouvelle branche et modifier le code comme on fait dans ce TP2.
 
-### supprimer un sous-module
+### Supprimer un sous-module
 Plusieurs étapes sont nécessaires pour supprimer un sous-module de votre dépôt Git. Voici comment procéder :
 1) Supprimer le sous-module du fichier `.gitmodules`,
-2) Mettre en attente le fichier `.gitmodules` avec `git add .gitmodules`,
-3) Supprimer le sous-module du fichier et du fichier `.git/config`,
-4) Exécuter `git rm --cached submodules/TDC7201Term`. Note: sans le slash final.
-5) Supprimer le répertoire du sous-module dans `.git/modules` avec `rm -rf .git/modules/submodules/TDC7201Term`
-6) Committer le changement: `git commit -m "Remove TDC7201Term submodule"`,
-7) Supprimer le répertoire du sous-module avec `rm -rf submodules/TDC7201Term`
+2) Supprimer le sous-module du fichier et du fichier `.git/config` en exécutant `git rm --cached submodules/TDC7201Term` sans le slash (/) final. Ce répertoire devient non-suivi.
+3) Supprimer le répertoire du sous-module dans `.git/modules` avec `rm -rf .git/modules/submodules/TDC7201Term`
+4) Mettre à jour votre dépôt (`git add`, `git commit`, `git clean`)
