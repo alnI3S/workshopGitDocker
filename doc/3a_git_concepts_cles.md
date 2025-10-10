@@ -215,3 +215,4 @@ Plusieurs étapes sont nécessaires pour supprimer un sous-module de votre dép�
 2) Supprimer le sous-module du fichier et du fichier `.git/config` en exécutant `git rm --cached submodules/TDC7201Term` sans le slash (/) final. Ce répertoire devient non-suivi.
 3) Supprimer le répertoire du sous-module dans `.git/modules` avec `rm -rf .git/modules/submodules/TDC7201Term`
 4) Mettre à jour votre dépôt (`git add`, `git commit`, `git clean`)
+5) Supprimer le répertoire du sous-module avec `rm -rf submodules/TDC7201Term`.
