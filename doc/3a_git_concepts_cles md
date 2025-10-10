@@ -27,6 +27,8 @@ Maintenant vous avez une copie locale du dépôt forké. Votre projet local n'a 
 4) Puis vous pouvez supprimer la branche locale avec `git branch -d <nom_de_la_branche>` et `git push origin --delete <nom_de_la_branche>` pour supprimer la branche distante.
 
 ## 🔄 Gestion des Modifications
+Ne modifiez jamais la branche `main` d'un dépôt dont vous n'êtes pas le propriétaire même si vous l'avez forké. Pour la mettre à jour, vous pouvez utiliser la fonctionnalité **Sync fork** de GitHub puis `git pull` en local pour récupérer les modifications.
+
 ### <img src="images/branch.png" width="24" height="24"> Branches: 
 On peut créer une nouvelle branche avec `git branch <new_branch>` ou `git checkout -b <new_branch>`. La premère vous laisse sur votre branche actuelle (`main`) alors que la deuxième bascule automatiquement sur la nouvelle branche.
 
@@ -41,7 +43,10 @@ A ce stade votre branch `dev` a le même état que la branche (`main`) dont elle
 **Notes**:
 1) voir les branches locales: `git branch`,
 2) basculer sur une branche existante: `git checkout <branch_name>` ou (**Nouveau!**) `git switch <branch_name>`,
-3) supprimer une branche locale: `git branch -d <branch_name>`,
+3) renommer la branche actuelle: `git branch -m <new_name>`,
+    - renommer une branche: `git branch -m <old_name> <new_name>`,
+    - renommer une branche distante: `git remote rename <current_name> <new_name>`.
+4) supprimer une branche locale: `git branch -d <branch_name>`,
 
 ### Modification de code: 
 Modifiez le fichier `doc/2a_git&code.md` par exemple en y ajoutant à la fin:
@@ -83,12 +88,10 @@ Nous avons vu dans le bonus du TP1 les commandes graphiques équivalents à `git
 
 ### Sauvegarder une branche locale sur GitHub:
 - Votre branche `dev` n'existe que localementMaintenant dans la section graphique une nouvelle étape apparaît. Envoyez votre branche locale sur votre dépôt GitHub en cliquant sur "**Publier la branche**".
-
-    **Note**: Pour publier une branche locale sur GitHub, les commandes CLI sont:
-
-        ```
-        git push origin -u <branch_name>
-        ```
+    
+    **Notes**:
+    1) Publier une branche locale sur GitHub, la commande dans un terminal (CLI) est: `git push origin -u <branch_name>`,
+    2) Supprimer une branch distante: `git push origin --delete <branch_name>`. Attention `origin` est le nom affiché par la commande `git remote -v`.
 
 ### Merge Tool: 
 #### Cas simple sans conflit:
@@ -104,10 +107,33 @@ entrez un message dans MERGE_MSG et enregistrez.
 #### Cas avec conflits
 Lorqu'il y a des conflits, l'outil de fusion intégré à Code s'ouvre automatiquement pour vous aider à résoudre.
 
-On va simuler en local un conflit en modifiant le même fichier `doc/2a_git&code.md` sur deux branches différentes:
-1) Restez sur la branche `dev` et modifiez le même fichier en entrant le texte "test conflit: modifié dans dev.". Validez le changement.
-2) Basculez vers la branche `main` et modifiez le fichier `doc/2a_git&code.md`. en ajoutant par exemple le texte "test conflit: modifié dans main.". Enregistrez.
-3) fusionnez `test` dans `main`
+On va simuler un conflit en modifiant le même fichier `doc/2a_git&code.md` en local et à distant:
+1) Restez sur la branche `dev` et modifiez ce fichier en entrant un texte par exemple "test conflit: modifié en local".
+2) Allez sur GitHub et **sélectionnez la branche `dev`** puis modifier le même fichier en entrant un autre texte par exemple "modifié à distance.". Validez le changementen appuyant sur le bouton **Commit changes** puis dans la fenêtre qui s'ouvre, appuyez encore sur un **Commit changes**.
+
+On va envoyer le changement local vers GitHub:
+1) Validez votre changement en local (boutons **+**, **validation**, **check**)
+2) Envoyez le changement local vers GitHub en appuyant sur **synchroniser les modifications**.
+
+3) Basculez vers la branche `main` et modifiez le fichier `doc/2a_git&code.md`. en ajoutant par exemple le texte "test conflit: modifié dans main.". Enregistrez.
+4) fusionnez `test` dans `main`
+choix :
+	 x: Accepter la modification actuelle (dans branche main actuelle)	
+	)
+	Accepter les deux modifications
+	Comparer les modifications
+Résoudre dans l'éditeur de fusion
+accepter la modification côté dev (Accepter la modification entrante
+Terminer la fusion
+Continuer
+
+### Annuler un commit
+Supposons que la fusion précédente ne vous plaise pas. Vous pouvez annuler le dernier commit avec la commande `git reset`:
+```
+git status
+git log
+git reset HEAD~
+```
 
 
 Résolvez les conflits avec `git merge` ou des outils graphiques intégrés.
