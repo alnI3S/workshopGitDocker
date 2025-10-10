@@ -182,9 +182,9 @@ Souvent dans les projets d'ampleur important il intègres plusieur modules tiers
 ### Ajouter un sous-module
 Pour intégrer un autre dépôt Git avec `git submodule add <repository> [<path>]`:
 
-1) ajouer un module de mesure Time Of Flight (TOF) de la puce TDC7201 de Texas Instruments dans le répertoire `submodules`:
+1) ajouer un module de mesure Time Of Flight (TOF) de la puce TDC7201 de Texas Instruments dans le répertoire `submodules/TDC7201Term`:
 ```
-git submodule add https://github.com/looninho/TDC7201Term.git submodules
+git submodule add https://github.com/looninho/TDC7201Term.git submodules/TDC7201Term
 ```
 
 
@@ -192,3 +192,11 @@ git submodule add https://github.com/looninho/TDC7201Term.git submodules
 Synchronisez les modifications du sous-module avec `git submodule update`.
 
 ### supprimer un sous-module
+Plusieurs étapes sont nécessaires pour supprimer un sous-module de votre dépôt Git. Voici comment procéder :
+1) Supprimer le sous-module du fichier `.gitmodules`,
+2) Mettre en attente le fichier `.gitmodules` avec `git add .gitmodules`,
+3) Supprimer le sous-module du fichier et du fichier `.git/config`,
+4) Exécuter `git rm --cached submodules/TDC7201Term`. Note: sans le slash final.
+5) Supprimer le répertoire du sous-module dans `.git/modules` avec `rm -rf .git/modules/submodules/TDC7201Term`
+6) Committer le changement: `git commit -m "Remove TDC7201Term submodule"`,
+7) Supprimer le répertoire du sous-module avec `rm -rf submodules/TDC7201Term`
