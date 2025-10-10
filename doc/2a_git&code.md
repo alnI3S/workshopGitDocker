@@ -164,4 +164,4 @@ On va refaire la même chose mais cette fois-ci on va utiliser Code pour visuali
 
 # test
 
-test conflit: modifié en local.
+test conflit: modifié sur GitHub.
