@@ -138,12 +138,15 @@ git log
 
 ## 4️⃣ Travail au quotidien
 1) Quand vous modifiez/ajoutez votre code, vous utilisez `git add` et `git commit` comme dans la section 2.2.
-
-2) Ensuite vous sauvegardez votre changement sur GitHub avec:
+2) Mettez à jour (récupérez) les changements distants:
     ```
-    git pull        # (option) pour récupérer les changements à distant
+    git pull
+    ```
+3) et envoyez vos changements:
+    ```
     git push
     ```
+
 ### Pratique 1
 1) Ajoutez un fichier ou modifiez un fichier existant de votre dépôt: utiliser `git add` et `git commit`,
 

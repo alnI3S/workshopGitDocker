@@ -29,6 +29,20 @@ Maintenant vous avez une copie locale du dépôt forké. Votre projet local n'a 
 ## 🔄 Gestion des Modifications
 Ne modifiez jamais la branche `main` d'un dépôt dont vous n'êtes pas le propriétaire même si vous l'avez forké. Pour la mettre à jour, vous pouvez utiliser la fonctionnalité **Sync fork** de GitHub puis `git pull` en local pour récupérer les modifications.
 
+### Mettre de côté les modifications (`git stash`)
+- Pour sauvegarder temporairement vos modifications non commitées. Cela est utile lorsque vous devez basculer rapidement sur une autre branche sans commiter vos changements:
+```
+git stash
+```
+- Voir les sauvegardes temporaires:
+```
+git stash list
+```
+- Pour revenir à l'état avant la sauvegarde temporaire: appliquer la dernière sauvegarde temporaire:
+```
+git stash apply
+```
+
 ### <img src="images/branch.png" width="24" height="24"> Branches: 
 On peut créer une nouvelle branche avec `git branch <new_branch>` ou `git checkout -b <new_branch>`. La premère vous laisse sur votre branche actuelle (`main`) alors que la deuxième bascule automatiquement sur la nouvelle branche.
 
@@ -46,9 +60,16 @@ A ce stade votre branch `dev` a le même état que la branche (`main`) dont elle
 3) renommer la branche actuelle: `git branch -m <new_name>`,
     - renommer une branche: `git branch -m <old_name> <new_name>`,
     - renommer une branche distante: `git remote rename <current_name> <new_name>`.
-4) supprimer une branche locale: `git branch -d <branch_name>`,
+4) créer une nouvelle branch avec les modificcations actuelles:
+    ```
+    git stash                   # sauvegarde les modifications actuelles    
+    git checkout -b <new_branch>  # créer une nouvelle branche
+    git stash apply             # restaure les modifications sauvegardées
+    # validation avec git add et git commit
+    ```
+5) supprimer une branche locale: `git branch -d <branch_name>`,
 
-### Modification de code: 
+### Modification du code: 
 Modifiez le fichier `doc/2a_git&code.md` par exemple en y ajoutant à la fin:
 ```
 Exercice:
@@ -94,40 +115,37 @@ Nous avons vu dans le bonus du TP1 les commandes graphiques équivalents à `git
     2) Supprimer une branch distante: `git push origin --delete <branch_name>`. Attention `origin` est le nom affiché par la commande `git remote -v`.
 
 ### Merge Tool: 
-#### Cas simple sans conflit:
-Nous allons fusionner la branche `dev` dans la branche `main`. Il n'y a pas de conflit:
-
-```
-git checkout main       # aller sur la branche main
-git pull                # récupérer les changements (s'il y en a)
-git merge test          # fusionner branche test dans branche main (actuelle)
-```
-entrez un message dans MERGE_MSG et enregistrez.
-
-#### Cas avec conflits
-Lorqu'il y a des conflits, l'outil de fusion intégré à Code s'ouvre automatiquement pour vous aider à résoudre.
-
-On va simuler un conflit en modifiant le même fichier `doc/2a_git&code.md` en local et à distant:
+On va simuler un conflit "*divergent*" en modifiant le même fichier `doc/2a_git&code.md` en local et à distant:
 1) Restez sur la branche `dev` et modifiez ce fichier en entrant un texte par exemple "test conflit: modifié en local".
-2) Allez sur GitHub et **sélectionnez la branche `dev`** puis modifier le même fichier en entrant un autre texte par exemple "modifié à distance.". Validez le changementen appuyant sur le bouton **Commit changes** puis dans la fenêtre qui s'ouvre, appuyez encore sur un **Commit changes**.
+2) Allez sur GitHub et **sélectionnez la branche `dev`** puis modifier le même fichier en entrant un autre texte par exemple "modifié sur GitHub.". Validez le changementen appuyant sur le bouton **Commit changes** puis dans la fenêtre qui s'ouvre, appuyez encore sur un **Commit changes**.
 
 On va envoyer le changement local vers GitHub:
 1) Validez votre changement en local (boutons **+**, **validation**, **check**)
 2) Envoyez le changement local vers GitHub en appuyant sur **synchroniser les modifications**.
+3) Dans le terminal, vérifiez le status et constatez que votre branche est divergée:
+    ```
+    git status
+    ```
+4) Si vous tentez de récupérer les changements distants, Git refuse car il y a des conflits:
+    ```
+    git pull
+    ```
+5) Suivez la consigne de Git pour la fusion:
+    ```
+    git config pull.rebase false
+    git pull
+    ```
+6) Code ouvre automatique quement les fichiers en conflit un par un. Réglez le conflit en choisissant par exemple la version distante (sur GitHub) avec:
+    - **Accepter la modification entrante**,
+    - Cliquez sur **Résoudre dans l'éditeur de fusion**,
+    - sélectiobbez **Accepter toutes les modifications entrantes..**. Observez le résultat dans la fenêtre dédiée en bas,
+    - Cliquez sur **Terminer la fusion**,
+    - Cliquez sur **Continuer**.
 
-3) Basculez vers la branche `main` et modifiez le fichier `doc/2a_git&code.md`. en ajoutant par exemple le texte "test conflit: modifié dans main.". Enregistrez.
-4) fusionnez `test` dans `main`
-choix :
-	 x: Accepter la modification actuelle (dans branche main actuelle)	
-	)
-	Accepter les deux modifications
-	Comparer les modifications
-Résoudre dans l'éditeur de fusion
-accepter la modification côté dev (Accepter la modification entrante
-Terminer la fusion
-Continuer
+### Revenir en arrière 
 
-### Annuler un commit
+#### Annuler un commit local
+
 Supposons que la fusion précédente ne vous plaise pas. Vous pouvez annuler le dernier commit avec la commande `git reset`:
 ```
 git status
@@ -135,71 +153,42 @@ git log
 git reset HEAD~
 ```
 
-
-Résolvez les conflits avec `git merge` ou des outils graphiques intégrés.
-- **Revenir en arrière**: Utilisez `git reset` pour annuler des modifications.
-- **Suppression des fichiers non suivis**: Nettoyez les fichiers inutiles avec `git clean`.
-### Mettre à jour un dépôt local: 
-Utilisez `git pull` pour synchroniser les dernières modifications depuis le dépôt distant.
-
-## 🔄 Synchronisation avec la Branche Distante
-- **Pousser les modifications**: Utilisez `git push` pour envoyer vos changements locaux vers le dépôt distant.
-- **Mettre à jour la branche distante**: Utilisez `git pull` pour intégrer les dernières modifications depuis le dépôt distant dans votre branche locale.
-
-## 🌿 Utilisation Avancée des Branches
-- **Créer une branche avec les modifications actuelles
-- **Cloner une branche spécifique**: Récupérez uniquement une branche particulière avec `git checkout -b <nom_branche> origin/<nom_branche>`.
-- **Pousser une branche locale vers GitHub**: Partagez une nouvelle branche avec `git push -u origin <nom_branche>`.
-- **Fusionner les branches**: Intégrez les modifications d’une branche dans une autre avec `git merge`.
-- **Comparer les fichiers entre branches**: Identifiez les différences avec `git difftool <branche1>..<branche2>`.
-
-## 📦 Gestion des Sous-Modules
-- **Ajouter un sous-module**: Intégrez un autre dépôt Git avec `git submodule add`.
-- **Mettre à jour un sous-module**: Synchronisez les modifications du sous-module avec `git submodule update`.
-
-
-
-log, status, commit --amend
-
-branch, checkout, merge, delete, 
-stash
-clone
-
-fetch, mergetool
-
-
-### revenir en arrière
-#### dépôt local
-Pour annuler le commit le plus récent:
-```
-git reset HEAD~ 
-```
-#### dépôt distant GitHub
-Si vous voulez aussi annuler le dernier commit à distant:
+#### Annuler un commit distant
+Pour annuler le dernier commit:
 ```
 git reset HEAD^
 git push origin +HEAD
 ```
-Vous pouvez annuler plusieurs commits successifs par exemple annuler les deux derniers commits avec la commande `git reset --hard HEAD~2`.
+**Note**: annuler les 2 (ou plus) derniers commits: `git reset --hard HEAD~2`.
 
-### rename/delete a file
-Quand vous renommer un fichier il apparaît en rouge avec `git status`, suivez les messages de git mour l'enlever:
+### (Bonus) Suppression de fichiers/dossiers non suivis
+- Nettoyer les fichiers non suivis (en rouge après `git status`):
+```
+git clean -n    # affiche les fichiers qui seront supprimés
+git clean -f    # force la suppression
+```
+- Supprimer les répertoires non suivis: 
+```
+git clean -ffxd
+```
+- Supprimer un fichier renommé non suivi:
 ```
 git rm <file_to_delete_in_red>
 git commit -m "rename/remove file"
 ```
-### synchroniser une branche
-### gestion avancée des branches
-- créer une nouvelle branche
-    - avec des modifications utilisant `git stash`
-- renommer une branche
-- basculer entre les branches
-- effacer une branche
-- envoyer une branche local vers le dépôt distant
-- cloner une branche spécifique
-- réinitialiser une branche locale sur la branche distante
-- fusionner 2 branches
 
-### sous-modules
+## 📦 Gestion des Sous-Modules
+Souvent dans les projets d'ampleur important il intègres plusieur modules tiers, ce sont des `submodule` en Git.
+### Ajouter un sous-module
+Pour intégrer un autre dépôt Git avec `git submodule add <repository> [<path>]`:
 
-## Fork
+1) ajouer un module de mesure Time Of Flight (TOF) de la puce TDC7201 de Texas Instruments dans le répertoire `submodules`:
+```
+git submodule add https://github.com/looninho/TDC7201Term.git submodules
+```
+
+
+### Mettre à jour un sous-module
+Synchronisez les modifications du sous-module avec `git submodule update`.
+
+### supprimer un sous-module
