@@ -1,4 +1,4 @@
-# TP1 - Démarrer avec Git et Code
+# TP1 - Démarrer avec Git et VSCode
 
 ## 1️⃣ Identification et authentificaton
 
@@ -41,7 +41,7 @@ Nous abordons Git par le sens local -> distant (remote): nous mettrons notre cod
 
 Créez un répertoire `monAtelierGit/`pour votre projet et y créez un fichier `README.md` avec ce contenu: 
 ```
-# Mes notes pour l'atelier Git, Docker et Code du 14 Octobre 2025
+# Mes notes pour l'atelier Git, Docker et VSCode du 14 Octobre 2025
 ```
 
 ### 2-2) Git: Les bases
@@ -67,16 +67,18 @@ git commit -m "Premier commit"
  1) Si vous voulez ajouter un certain nombre de fichiers seulement, utilisez `git add fichier1 fichier2`.
  2) Si vous voulez modifier votre dernier commit, utilisez la commande `git commit --amend`.
 
-### 2-3) **Outils: diff et merge** : 
-Git dispose deux outils en ligne de commande: `git diff` pour comparer et `git merge` pour fusionner les commits. Vous pouvez essayer la commande `git diff` dans votre projet. Nous les délaissons au détriment de la version plus pratique `git difftool`, `git mergetool` pour visualiser et résoudre les conflits directement dans Code.
+### 2-3) VSCode: Outils diff et merge: 
+Git dispose deux outils en ligne de commande: `git diff` pour comparer et `git merge` pour fusionner les commits. Vous pouvez essayer la commande `git diff` dans votre projet. Nous les délaissons au détriment de la version plus pratique `git difftool`, `git mergetool` pour visualiser et résoudre les conflits directement dans VSCode.
 
-**Configuration de Code** : Configurer Code comme éditeur par défaut pour Git, et utiliser ses outils intégrés pour les diffs et les fusions.
+#### 2-3-1) Configurer VSCode
 
-Faire de Code l'éditeur par défaut:
+Configurer VSCode comme éditeur par défaut pour Git, et utiliser ses outils intégrés pour les diffs et les fusions.
+
+Faire de VSCode l'éditeur par défaut:
 ```
 git config --global core.editor 'code --wait'
 ```
-Configurer Code comme outil de diff/merge:
+Configurer VSCode comme outil de diff/merge:
 ```
 git config --global diff.tool Code
 git config --global difftool.Code.cmd 'code --wait --diff $LOCAL $REMOTE'
@@ -89,9 +91,13 @@ git config --global -e
 ```
 Modifiez/Ajoutez du texte dans votre fichier `README.md` et testez la commande `git difftool`.
 
+ #### 2-3-2) Assistant AI
+
+- Pour **GitHub Copilot** a son propre extension dans VSCode.
+- S'il n'existe pas d'extension propre au modèle souhaité, c'est la cas de **Mistral AI - Le Chat** par exemple, il y a l'extension **Continue**. La configuration se fait dans l'extension et stockée est dans le fichier `~/.continue/config.json`. Suivre 
 ## 3️⃣ Partager/Sauvegarder le code sur GitHub
 - **Collaboration simplifiée** : Pousser votre code sur GitHub pour le partager avec votre équipe ou la communauté.
-- **Intégration fluide** : Code facilite les commits, les pushes, et les revues de code grâce à ses extensions (comme GitLens).
+- **Intégration fluide** : VSCode facilite les commits, les pushes, et les revues de code grâce à ses extensions (comme GitLens).
 
 ### 3-1) Projet sur GitHub (remote repo):
 Vous allez héberger votre projet sur GitHub en mode `Public` ou `Private` et syncroniser votre dépôt local avec le dépôt distant.
@@ -99,7 +105,7 @@ Vous allez héberger votre projet sur GitHub en mode `Public` ou `Private` et sy
     - Cliquez sur le logo de **votre profile > Repositories > New**
     - Remplissez les champs:
         - ***Repository name***:  *monAtelierGit*,
-        - ***Description*** avec par exemple le texte *atelier pratique Git, Docker avec  Code.*, 
+        - ***Description*** avec par exemple le texte *atelier pratique Git, Docker avec  VSCode.*, 
         - ***Configuration/Choose visibility***: `Public` (ou `Private` si vous ne voulez pas partager),
         - ***Configuration/Add README***: *Off*,
         - ***Configuration/Add .gitignore*****: *No*,
@@ -107,7 +113,7 @@ Vous allez héberger votre projet sur GitHub en mode `Public` ou `Private` et sy
         - copiez l'URL de votre projet pour la suite.
 
 ### 3-2) Association projet local <-> projet distant:
-- Retournez dans le terminal de Code, exécutez la commande suivante pour ajouter le dépôt distant à votre dépôt local:
+- Retournez dans le terminal, exécutez la commande suivante pour ajouter le dépôt distant à votre dépôt local:
     ```
     git remote add origin <votre_url_copié>
     ```
@@ -153,7 +159,7 @@ git log
 2) Sauvegardez les changements sur GitHub: utilisez `git push`.
 
 ### (Bonus) Pratique 2
-On va refaire la même chose mais cette fois-ci on va utiliser Code pour visualiser les changements et les sauvegarder sur GitHub.
+On va refaire la même chose mais cette fois-ci on va utiliser VSCode pour visualiser les changements et les sauvegarder sur GitHub.
 
 1) ajoutez/modifiez un fichier de votre dépôt. Puis allez dans le menu latéral à gauche, sélectionnez **Control de code source (Ctsl + Maj + G)** puis section **Changements**:
     
@@ -161,6 +167,6 @@ On va refaire la même chose mais cette fois-ci on va utiliser Code pour visuali
     
     1-2) Une nouvelle section **Changements indexés** apparaît avec les fichiers que vous avez cliqué sur le bouton "**+**". Et le bouton **Validation** devient disponible.
 
-    1-3) Cliquez sur **Validation** pour committer (équivalent à `git commit`) vos changements. Code va vous proposer d'entrer un message de commit, faites-le puis cliquez sur le logo "**check**" en forme de "v" pour valider le message.
+    1-3) Cliquez sur **Validation** pour committer (équivalent à `git commit`) vos changements. VSCode va vous proposer d'entrer un message de commit, faites-le puis cliquez sur le logo "**check**" en forme de "v" pour valider le message.
     
     1-4) Synchronisez avec votre dépôt sur GitHub en cliquant sur "**Synchroniser les modifications**" (équivalent à `git push`).

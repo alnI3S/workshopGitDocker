@@ -1,8 +1,8 @@
-# Introduction aux outils de développement : Git, Docker et Code
+# Introduction aux outils de développement : Git, Docker et VSCode
 **Points clés :**
 - **Git** : Suivi historique, collaboration décentralisée, gestion des branches, open-source.
 - **Docker** : Environnements reproductibles, isolation des projets, réseau multi-conteneurs, pas de problèmes d’installation.
-- **Code** : Interface intuitive, extensions variées, terminal intégré, compatible avec tous les systèmes d’exploitation.
+- **VSCode** : Interface intuitive, extensions variées, terminal intégré, compatible avec tous les systèmes d’exploitation.
 
 # Git – Système de contrôle de version
 **Avantages:**
@@ -15,8 +15,8 @@
 - **Environnements reproductibles et portables** : Les conteneurs s’exécutent de la même manière sur n’importe quelle machine.
 - **Focus sur le cœur du projet** : Élimine les problèmes liés à la configuration de l’environnement.
 - **Conteneur dédié par projet** : Chaque projet peut avoir ses propres dépendances et configurations isolées.
-- **Réseau multi-conteneurs: Docker compose** : Permet de faire communiquer plusieurs conteneurs entre eux, simulant un environnement de production.
-# Code – Éditeur de code
+- **Réseau multi-conteneurs: Docker compose** : Permet de faire communiquer plusieurs conteneurs entre eux, simulant/déployement (portainer) un environnement de production.
+# VSCode – Éditeur de code
 **Avantages :**
 - **Interface conviviale** : Facile à utiliser, avec une intégration fluide entre le développeur et la machine.
 - **Écosystème riche d’extensions** : Des milliers d’extensions disponibles, y compris des outils d’IA comme GitHub Copilot.
@@ -28,4 +28,4 @@ Ces trois outils sont souvent utilisés ensemble pour créer un **workflow de d�
 
 - **Git** gère le code source et les collaborations.
 - **Docker** assure que l’environnement d’exécution est cohérent et reproductible.
-- **Code** fournit une interface puissante pour coder, déboguer et gérer les projets.
+- **VSCode** fournit une interface puissante pour coder, déboguer et gérer les projets.

@@ -1,7 +1,7 @@
 # Utilisation Courante de Git - Concepts Clés
 Git offre des outils puissants pour gérer les modifications de code de manière collaborative et organisée. Que ce soit pour travailler sur des branches, résoudre des conflits, ou synchroniser avec des dépôts distants, Git facilite le développement en équipe et assure la traçabilité des changements.
 
-Code permet de visualiser et de gérer ces modifications de manière intuitive, en intégrant des outils de diff et de merge directement dans l’éditeur.
+VSCode permet de visualiser et de gérer ces modifications de manière intuitive, en intégrant des outils de diff et de merge directement dans l’éditeur.
 
 ## 📥 Récupération d’un Projet sur GitHub
 - **Forker un dépôt GitHub opensource**: Duppliquer un projet opensource sur GitHub.
@@ -11,7 +11,7 @@ Code permet de visualiser et de gérer ces modifications de manière intuitive, 
 ## 🔄 Gestion des Modifications
 - **Branches**: Utilisez `git branch` et git checkout pour travailler sur des fonctionnalités ou corrections de manière isolée.
 - **Modification de code**: Modifiez les fichiers dans votre environnement local.
-- **Diff Tool**: Utilisez `git difftool` ou des outils intégrés dans Code pour visualiser les différences entre les versions de fichiers.
+- **Diff Tool**: Utilisez `git difftool` ou des outils intégrés dans VSCode pour visualiser les différences entre les versions de fichiers.
 - **Merge Tool**: Résolvez les conflits avec `git merge` ou des outils graphiques intégrés.
 - **Revenir en arrière**: Utilisez `git reset` pour annuler des modifications.
 - **Suppression des fichiers non suivis**: Nettoyez les fichiers inutiles avec `git clean`.

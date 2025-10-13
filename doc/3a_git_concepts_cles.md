@@ -86,7 +86,7 @@ Il y a en général 3 sections:
 - **Changes not staged for commit** (Changements) en <span style="color:red; font-weight:bold;">rouge</span> contient les fichiers modifiés mais as encore ajoutés avec `git add`,
 - **Untracked files** en <span style="color:red; font-weight:bold;">rouge</span> contient les nouveaux fichier non indexés (pas encore `git add`).
 
-Les commandes `git diff` et `git merge` sont des outils essentiels pour gérer les modifications et les conflits dans Git mais sont souvent difficiles à utiliser en ligne de commande si vous avez des gros fichiers ou des changements complexes. Nous avons configuré Code pour les outils `difftool` et `mergetool`. Pour voir les changements vous pouvez utiliser `difftool` en cliquant sur le menu latéral gauche **Control de code source (Ctsl + Maj + G)** puis section **Changements**. Voici quelques exemples d'utilisation de `difftool` "en semi-ligne de commande":
+Les commandes `git diff` et `git merge` sont des outils essentiels pour gérer les modifications et les conflits dans Git mais sont souvent difficiles à utiliser en ligne de commande si vous avez des gros fichiers ou des changements complexes. Nous avons configuré VSCode pour les outils `difftool` et `mergetool`. Pour voir les changements vous pouvez utiliser `difftool` en cliquant sur le menu latéral gauche **Control de code source (Ctsl + Maj + G)** puis section **Changements**. Voici quelques exemples d'utilisation de `difftool` "en semi-ligne de commande":
 - voir les changements entre la version actuelle et la version précédente du fichier `doc/2a_git&code.md` sur la branche `main`: `git difftool <other_branch> -- <file_path>`:
     ```
     git difftool main doc/2a_git&code.md
@@ -96,7 +96,7 @@ Les commandes `git diff` et `git merge` sont des outils essentiels pour gérer l
     git difftool main
     ```
 
-    Code va vous demander de confirmer l'ouverture de chaque fichier pour visualiser les changements.
+    VSCode va vous demander de confirmer l'ouverture de chaque fichier pour visualiser les changements.
 
 Vous pouvez utiliser totalement avec l'interface graphique.
 
@@ -105,7 +105,7 @@ Nous avons vu dans le bonus du TP1 les commandes graphiques équivalents à `git
 - Allez dans le menu latéral gauche **Control de code source (Ctsl + Maj + G)** puis section **Changements**:
 - Cliquez sur le bouton "**+**" de "**Changements**" pour **Mettre en attente** tous les fichiers ou cliquez seulement le bouton "**+**" du fichier que vous souhaiter **Mettre en attente**. 
     - Une nouvelle section **Changements indexés** apparaît avec les fichiers que vous avez cliqué sur le bouton "**+**". Et le bouton **Validation** devient disponible.
-- Cliquez sur **Validation** pour committer vos changements. Code va vous proposer d'entrer un message de commit, faites-le puis enregistrez et cliquez sur le logo "**check**" en forme de "v" pour valider le commit.
+- Cliquez sur **Validation** pour committer vos changements. VSCode va vous proposer d'entrer un message de commit, faites-le puis enregistrez et cliquez sur le logo "**check**" en forme de "v" pour valider le commit.
 
 ### Sauvegarder une branche locale sur GitHub:
 - Votre branche `dev` n'existe que localementMaintenant dans la section graphique une nouvelle étape apparaît. Envoyez votre branche locale sur votre dépôt GitHub en cliquant sur "**Publier la branche**".
@@ -135,7 +135,7 @@ On va envoyer le changement local vers GitHub:
     git config pull.rebase false
     git pull
     ```
-6) Code ouvre automatique quement les fichiers en conflit un par un. Réglez le conflit en choisissant par exemple la version distante (sur GitHub) avec:
+6) Code ouvre automatiquement les fichiers en conflit un par un. Réglez le conflit en choisissant par exemple la version distante (sur GitHub) avec:
     - **Accepter la modification entrante**,
     - Cliquez sur **Résoudre dans l'éditeur de fusion**,
     - sélectiobbez **Accepter toutes les modifications entrantes..**. Observez le résultat dans la fenêtre dédiée en bas,
@@ -180,39 +180,57 @@ git commit -m "rename/remove file"
 ## 📦 Gestion des Sous-Modules
 Souvent dans les projets d'ampleur important il intègres plusieur modules tiers, ce sont des `submodule` en Git.
 ### Ajouter un sous-module
-Si vous voulez juste utiliser un module sans le modifier, vous pouvez l'intégrer dans votre projet avec `git submodule add <repository> [<path>]`:
+Si vous voulez juste utiliser un module sans le modifier, vous pouvez l'intégrer dans votre projet avec `git submodule add <repository> [<dest_path>]`:
 
-1) Ajouter un module de mesure Time Of Flight (TOF) de la puce TDC7201 de Texas Instruments dans le répertoire `submodules/TDC7201Term`:
+1) Ajouter un module créé par votre collègue par exemple dans le répertoire `submodules/module1`:
 ```
-git submodule add https://github.com/looninho/TDC7201Term.git submodules/TDC7201Term
+git submodule add <url_du_module> submodules/module1
 ```
-2) Aller dans le répertoire du sous-module et vérifier la branche par défaut:
+2) Valider les modifications (avec `git commit` et `git push`)
+3) Aller dans le répertoire du sous-module et vérifier la branche par défaut:
 ```
-cd cd submodules/TDC7201Term/
+cd submodules/module1/
 git status
 git remote -v
+cd -        # revenir au projet parent
 ```
-Maintenannt vous êtes dans un sous-répertoire qui se comporte comme un dépôt Git indépendant. Attention tout de même que le dépôt `origin` ne vous appartient pas donc ne rien mododifiez dedans.
 
-**Note**: Si vous voulez récupérer les dernières modifications faites par le propriétaire du dépôt `origin`, utilisez `git pull` depuis le répertoire du sous-module.
+**Notes**: 
+1) Si vous voulez récupérer les dernières modifications faites par le propriétaire du dépôt `origin`, utilisez `git submodule update --remote --recursive`.
+2) Les autres utilisateurs clonnent votre projet avec `git clone --recurse-submodules <URL_DU_DÉPÔT_PARENT>`.
 
 ### Modifier un sous-module
-Si vous voulez modifier le code du sous-module, il convient d'ajouter un dépôt `upstream` (un fork sur GitHub qui vous appartient) pour récupérer les mises à jour du dépôt `origin` depuis GitHub et modifier le code comme nous avons fait dans ce TP2:
-1) Sur gitHub, faire un **fork** du dépôt origine
-2) Ajouter le lien `upstream` pour le module forké avec `git remote add upstream <url_forked_submodule>`. Attention pour les `pull`/`push` il faut préciser `upstream` comme `git pull upstream [<branch_name>]`, `git push upstream [<branch_name>]` parce que rien préciser est équivalent à `origin`.
-3) Aller dans le répertoire du sous-module et vérifier:
+Si vous souhaitez travailler avec une version modifiée du sous-module. La boone pratique est de forker l'original et cloner votre fork puis modifier le code comme on a fait jusqu'à présent. Il faut aussi rediriger l'url du sous-module vers le vôtre:
+1) Sur GitHub, faire un **fork** du dépôt du sous-module,
+2) Clonnez votre fork dans un répertoire indépendant,
+3) Créez une branche pour travailler le code,
+4) Revenez à votre projet parent er remplacer l'url ainsi que la branche du sous-module vers le vôtre dans le fichier `.gitmodules`
+    5) Pointez le lien au dépôt distant vers le vôtre:
     ```
-    # cd path_to_submodule
-    git remote -v
-    git branch
+    cd <path_to_submodule>  # aller dans le répertoire du sous-module
+    git remote -v           # verifier  origin, url du dépôt distant
+    git remote rename origin upstream   # renommer origin en upstream
+    git remote add origin <votre_url_fork> # origin pointe maintenant vers le vôtre
+    cd -    # revenir au projet parent
+    git submodule update --remote --recursive #mettre à jour le sous-module
     ```
-4) Remplacer l'url ainsi que la branche du sous-module vers le vôtre dans le fichier `.gitmodules`
-5) Vous pouvez créer une nouvelle branche et modifier le code comme on fait dans ce TP2.
+5) Validez les changements.
 
 ### Supprimer un sous-module
 Plusieurs étapes sont nécessaires pour supprimer un sous-module de votre dépôt Git. Voici comment procéder :
-1) Supprimer le sous-module du fichier `.gitmodules`,
-2) Supprimer le sous-module du fichier et du fichier `.git/config` en exécutant `git rm --cached submodules/TDC7201Term` sans le slash (/) final. Ce répertoire devient non-suivi.
-3) Supprimer le répertoire du sous-module dans `.git/modules` avec `rm -rf .git/modules/submodules/TDC7201Term`
-4) Mettre à jour votre dépôt (`git add`, `git commit`, `git clean`)
-5) Supprimer le répertoire du sous-module avec `rm -rf submodules/TDC7201Term`.
+1) Retirer la section du sous-module dans le fichier `.gitmodules`,
+2) entrer ces commandes:
+```
+git submodule deinit -f submodules/module1
+git rm --cached submodules/module1
+rm -rf .git/modules/submodules/module1
+git commit -m "Suppression du sous-module module1"
+git push
+```
+
+Explications:
+
+- La première ligne supprime la configuration locale du sous-modulele dans le fichier `.git/config`,
+- La deuxième supprime le dossier du sous-module de l’index Git,
+- La troisième supprime les références du sous-module dans `.git/modules`
+- Les deux dernières lignes valident le changement.
