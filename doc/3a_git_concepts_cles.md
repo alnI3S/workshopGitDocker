@@ -44,7 +44,8 @@ git stash apply
 ```
 
 ### <img src="images/branch.png" width="24" height="24"> Branches: 
-On peut créer une nouvelle branche avec `git branch <new_branch>` ou `git checkout -b <new_branch>`. La premère vous laisse sur votre branche actuelle (`main`) alors que la deuxième bascule automatiquement sur la nouvelle branche.
+
+On peut créer une nouvelle branche avec `git branch <new_branch>`,`git checkout -b <new_branch>` ou `git switch -c <new_branch>`. La premère vous laisse sur votre branche actuelle (`main`), la deuxième bascule automatiquement sur la nouvelle branche et la troisième est disponible depuis Git 2.23 et plus.
 
 #### Création d'une branche locale
 Créez une nouvelle branche locale `dev` et basculez-y avec:
@@ -200,21 +201,26 @@ cd -        # revenir au projet parent
 2) Les autres utilisateurs clonnent votre projet avec `git clone --recurse-submodules <URL_DU_DÉPÔT_PARENT>`.
 
 ### Modifier un sous-module
-Si vous souhaitez travailler avec une version modifiée du sous-module. La boone pratique est de forker l'original et cloner votre fork puis modifier le code comme on a fait jusqu'à présent. Il faut aussi rediriger l'url du sous-module vers le vôtre:
+Si vous souhaitez travailler avec une version modifiée du sous-module. La bonne pratique est de forker l'original et cloner votre fork puis modifier le code comme on a fait jusqu'à présent. Il faut aussi rediriger l'url du sous-module vers le vôtre:
 1) Sur GitHub, faire un **fork** du dépôt du sous-module,
 2) Clonnez votre fork dans un répertoire indépendant,
 3) Créez une branche pour travailler le code,
-4) Revenez à votre projet parent er remplacer l'url ainsi que la branche du sous-module vers le vôtre dans le fichier `.gitmodules`
-    5) Pointez le lien au dépôt distant vers le vôtre:
+4) Revenez à votre projet parent er remplacer l'`url` ainsi que la `branch` du sous-module vers le vôtre dans le fichier `.gitmodules`
+5) Pointez le lien au dépôt distant vers le vôtre:
     ```
     cd <path_to_submodule>  # aller dans le répertoire du sous-module
     git remote -v           # verifier  origin, url du dépôt distant
     git remote rename origin upstream   # renommer origin en upstream
     git remote add origin <votre_url_fork> # origin pointe maintenant vers le vôtre
     cd -    # revenir au projet parent
-    git submodule update --remote --recursive #mettre à jour le sous-module
+    git submodule sync <path_to_submodule> #mettre à jour le sous-module
     ```
-5) Validez les changements.
+6) Validez les changements.
+
+Pour mettre-à-jour votre sous-module depuis le dépôt parent:
+```
+git submodule update --remote <path_to_submodule>
+```
 
 ### Supprimer un sous-module
 Plusieurs étapes sont nécessaires pour supprimer un sous-module de votre dépôt Git. Voici comment procéder :

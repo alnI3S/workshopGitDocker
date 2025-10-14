@@ -8,11 +8,11 @@ Définir votre identité (nom, email) pour que vos contributions soient reconnue
 git config --global user.name <votre_nom>
 git config --global user.email <votre@email.com>
 ```
-Visualisation de toutes les configurations actives (locale + globale + système):
+Visualisation des configurations du dépôt actuel, stockées dans le fichier `.git/config`:
 ```
 git config --list
 ```
-ou visualisation uniquement les configurations utilisateur:
+ou visualisation des configurations de tous les dépôts sur votre machine stockées dans `~/.gitconfig`:
 ```
 git config --global --list
 ```
@@ -27,7 +27,7 @@ Sécuriser vos interactions avec les dépôts distants (GitHub, GitLab) pour pou
 - Automatisation de l'accès token: enregistrement du token dans un fichier sur votre ordinateur afin de nep as avoir à les saisir à chaque interaction avec un dépôt distant (GitHub, GitLab, Koda).
 ```
 git config --global --add credential.helper "store --file ~/.git-credentials"
-chmode 600 ~/.git-credentials  # Restreint les permissions du fichier
+chmod 600 ~/.git-credentials  # Restreint les permissions du fichier
 ```
 - (Option) Voir/Supprimer la configuration:
 ```
@@ -113,7 +113,7 @@ Vous allez héberger votre projet sur GitHub en mode `Public` ou `Private` et sy
         - copiez l'URL de votre projet pour la suite.
 
 ### 3-2) Association projet local <-> projet distant:
-- Retournez dans le terminal, exécutez la commande suivante pour ajouter le dépôt distant à votre dépôt local:
+- Retournez dans le terminal, exécutez la commande suivante pour ajouter le dépôt distant à votre dépôt local, votre dépôt distant est identifié par le nom `origin` et l'URL que vous avez copié dans le paragraphe précèdent. Remplacez `<votre_url_copié>` par l'URL que vous avez copié dans le paragraphe précèdent:
     ```
     git remote add origin <votre_url_copié>
     ```
@@ -152,6 +152,7 @@ git log
     ```
     git push
     ```
+**Note**: Quand vous utilisez les commandes `git pull`, `git push` sur la branche `main` sans préciser le `remote` Git utilise la valeur par défaut définie dans `branch.main.remote` accessible avec la commande `git config --get branch.main.remote` ou `git config --list`. Il y a les mêmes commandes avec `--global` pour tous les dépôts sur votre ordinateur.
 
 ### Pratique 1
 1) Ajoutez un fichier ou modifiez un fichier existant de votre dépôt: utiliser `git add` et `git commit`,
