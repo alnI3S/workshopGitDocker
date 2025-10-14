@@ -32,3 +32,5 @@ Pour profiter pleinement de l’atelier, **merci de préparer votre environnemen
 
 ⚠️ **Important** : Les instructions détaillées d’installation sont disponibles en pièce jointe. V**érifiez votre configuration avant le 14 octobre à 10h** pour éviter les retards.
 
+modif
+
