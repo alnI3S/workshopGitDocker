@@ -25,9 +25,9 @@ Pour profiter pleinement de l’atelier, **merci de préparer votre environnemen
  - **Système** : Ubuntu (avec droits sudo et accès internet).
  - **Comptes** : GitHub et Docker Hub.
  - **Outils installés :**
-	-- Docker Engine (et NVIDIA Container Toolkit pour les utilisateurs de GPU NVIDIA).
-	-- VSCode (via Snap, App Center ou .deb).
-	-- Git (préinstallé sur Ubuntu, vérifiez avec git --version).
+    - Docker Engine (et NVIDIA Container Toolkit pour les utilisateurs de GPU NVIDIA).
+	- VSCode (via Snap, App Center ou .deb).
+	- Git (préinstallé sur Ubuntu, vérifiez avec `git --version`).
  - **Extensions VSCode recommandées** : GitLens, Docker, Remote - Containers.
 
 ⚠️ **Important** : Les instructions détaillées d’installation sont disponibles en pièce jointe. V**érifiez votre configuration avant le 14 octobre à 10h** pour éviter les retards.
