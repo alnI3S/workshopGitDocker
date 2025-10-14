@@ -15,11 +15,11 @@ Découvrez comment configurer un **environnement de développement reproductible
 # Plan
 |   Section             |Durée                          |Format                         |
 |----------------|-------------------------------|-----------------------------|
-|Présentation des outils|5 min            |Theory            |
-|Configurer VSCode pour Git          |20 min            |Théorie (5 min) + pratique            |
-|Git : Bonnes pratiques          |25 min|Théorie (5 min) + pratique|
-|Docker : environnement reproductif          |20 min|Théorie (5 min) + pratique|
-|Questions/Réponses et conclusion          |10 min|échanges libres|
+|[Présentation des outils](./doc/1_presentation.md)|5 min            |Theory            |
+|[Configurer VSCode pour Git](./doc/2_git&code.md)          |20 min            |Théorie (5 min) + pratique            |
+|[Git : Bonnes pratiques](./doc/3_git_concepts_cles.md)          |25 min|Théorie (5 min) + pratique|
+|[Docker : environnement reproductif](./doc/4_docker.md)          |20 min|Théorie (5 min) + pratique|
+|[Questions/Réponses et conclusion](./doc/5_conclusion.md)          |10 min|échanges libres|
 # Prérequis
 Pour profiter pleinement de l’atelier, **merci de préparer votre environnement à l’avance :**
  - **Système** : Ubuntu (avec droits sudo et accès internet).
