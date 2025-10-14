@@ -25,3 +25,5 @@
 
 ## Un mot sur la préparation de cet alier:
 J'ai commencé depuis zéro et j'utilise mes notes durant mes travaux quotidien depuis 4 ans. Mes notes servent à alimenter l'assistante IA **Le Chat**. J'ai laissé forcément quelques erreurs et je vous invite à me faire part de vos remarques pour pratiquer cet atelier par exempel.
+
+## Questions/Réponses
