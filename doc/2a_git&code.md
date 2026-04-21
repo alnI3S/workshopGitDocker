@@ -64,8 +64,9 @@ git add . # ajouter tous les fichiers du répertoire courant
 git commit -m "Premier commit"
 ```
 **Note**: 
- 1) Si vous voulez ajouter un certain nombre de fichiers seulement, utilisez `git add fichier1 fichier2`.
- 2) Si vous voulez modifier votre dernier commit, utilisez la commande `git commit --amend`.
+ 1) On peut utiliser `git commit -a` et entrer un commentaire détaillé.
+ 2) Si vous voulez ajouter un certain nombre de fichiers seulement, utilisez `git add fichier1 fichier2`.
+ 3) Si vous voulez modifier votre dernier commit, utilisez la commande `git commit --amend`.
 
 ### 2-3) VSCode: Outils diff et merge: 
 Git dispose deux outils en ligne de commande: `git diff` pour comparer et `git merge` pour fusionner les commits. Vous pouvez essayer la commande `git diff` dans votre projet. Nous les délaissons au détriment de la version plus pratique `git difftool`, `git mergetool` pour visualiser et résoudre les conflits directement dans VSCode.
